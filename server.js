@@ -7,7 +7,11 @@ var jsonData = {count: 12, message: 'hey'};
 app.use(express.static('.'));
 
 app.get('/', function(req, res) {
-    res.sendFile('index.html');
+    res.sendFile('index.html', (err)=>{
+        if(err){
+            res.status(500).send(err);
+        }
+    });
 });
 
 app.get('/data', function(req, res) {
